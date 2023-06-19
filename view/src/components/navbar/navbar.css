@@ -1,0 +1,14 @@
+nav {
+    position:absolute;
+    top:0;
+    width:100%;
+    background-color: rgba(72, 44, 44, 0.955);
+    height:100px;
+    z-index: 1;
+    display:flex;
+    align-items: center;
+}
+
+#logo{
+ margin: 0 5rem;
+}

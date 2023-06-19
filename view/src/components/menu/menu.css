@@ -1,0 +1,41 @@
+
+
+.menu-page {
+    background-image: url('../../images/menu-bg.jpg');
+    background-size: cover;
+    
+}
+.menu-header{
+    background-image: url('../../images/menu-header-bg.jpg');
+    background-size: cover;
+    width:  100vw;
+    height: 50vh;
+    margin-bottom: 2rem;
+}
+.food-section{
+    display: flex;
+    flex-direction: column;
+    width:60%;
+    margin:auto;
+    
+}
+.food-category{
+    background-color: rgba(226, 226, 226, 0.797);
+    border-radius: 5px;
+    padding-top: 2rem 
+}
+.food-category h1 {
+    text-align: center;
+    color: rgb(201, 174, 20);
+    font-size: 3rem;
+    font-weight: 400;
+    
+
+}
+.food-category img {
+    margin:auto;
+    display: block;
+}
+#deco{
+    margin-bottom: 1rem;
+}
