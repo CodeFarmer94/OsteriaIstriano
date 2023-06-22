@@ -1,14 +1,14 @@
 .menu-item {
     color: rgb(26, 33, 14);
     font-weight: 100;
-    border-bottom: 1px solid rgb(172, 172, 172);
+    border: 1px solid rgb(172, 172, 172);
     padding: 1rem;
     width: 90%;
     margin: auto;
     display: flex;
     justify-content: space-between;
-    background-color: white;
-    box-shadow: 1px 1px 1px rgb(160, 160, 160);
+    background-color: rgba(255, 255, 255, 0.797);
+    box-shadow: 2px 2px 4px rgb(160, 160, 160);
 }
 .menu-item h2 {
     font-weight: 200;

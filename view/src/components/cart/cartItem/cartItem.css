@@ -1,0 +1,40 @@
+.cart-item {
+    display: flex;
+    align-items: center;
+    margin: 0 1rem;
+    background-color: rgb(226, 223, 223);
+    color: rgb(96, 94, 94);
+   border-bottom: 1px solid gray;
+  }
+  .cart-item h3 {
+    font-weight: 200;
+    margin: 0;
+    
+  }
+  
+  .cart-item span {
+    display: flex;
+    margin-right:1rem;
+    padding:0.7rem 1rem;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    width: 100%;
+   
+  }
+
+  .cart-item span .quantity{
+    margin-right: 1rem;
+    color: rgb(255, 255, 255);
+    background-color: rgba(173, 116, 41, 0.647);
+    border-radius: 50%;
+    padding: 0 8px;
+    border: 1px solid gray
+    
+  }
+  .cart-item  .price{
+    margin-right: 2rem;
+    justify-self:end;
+   
+  }
+  

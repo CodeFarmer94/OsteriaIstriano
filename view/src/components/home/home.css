@@ -32,19 +32,20 @@
 }
 
 .top-section::after{
-    background-color: yellow;
+    
     width:100%;
     height:200px;
 }
 
 .delivery-section {
-   background-color: white;
+   background-image: url('../../images/menu-bg.jpg');
    margin: 1rem auto;
    width: 80%;
    text-align: left;
    position: relative;
    padding:20px 50px;
    border-radius: 5px;
+   height: 100%;
 }
 .delivery-section-header{
 
@@ -71,40 +72,101 @@
     border-radius: 5px;
     
 }
-.food-gallery{
+
+  .home-order-container {
+    text-align: center;
+    width: 50%;
+  }
+  .home-order-container h1 {
+    font-size: 2rem;
+  }
+  .home-order-container p {
+    font-size: 1.5rem;
+
+  }
+  .home-order-container p span {
+    color: rgb(148, 128, 16);
+    font-weight: bold;
+  }
+  .home-order-container a {
+    text-decoration: none;
+    font-weight: bold;
+    color: rgb(148, 128, 16);
+    font-size: 2rem;
+
+  }
+  .home-vertical-img-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    align-items: center; 
+    gap:1rem;
+  }
+  
+  
+  #vertical-img {
+    grid-row: 1/3; 
+    justify-self: center;
+    height:300px;
+    margin-left: 2rem;
+  }
+  
+  #vertical-img2{
+    height:300px;
+    width: 225px;
+  }
+  #vertical-img3{
+    height:300px;
+    grid-column: 2/2;
+    width: 225px;
+  }
+  #vertical-img4 {
+    
+    grid-column: 1/1;
+    height:300px;
+    width: 225px;
+    justify-self: right
+  }
+  
+  #vertical-img5{
+    height:300px;
+    grid-column: 2/2;
+    justify-self: center;
+    grid-row: 1/3
+  
+  }
+  #vertical-img6{
+    height:300px;
+    grid-column:1/1;
+    justify-self: right
+  }
+
+  .contacts-section {
+    background-image: url('../../images/menu-header-bg.jpg');
+    background-size: cover;
+    width: 100%;
+    height: 668px;
+    background-position: center;
+    margin: 4rem auto;
     display: flex;
-    gap:1.5rem;
-    padding:1rem 0;
-    border-radius: 5px;
-    overflow:auto;
-}
-#food{
-    width:200px;
-    height:200px;
-    border-radius: 5px;
-}
-.scroll-button {
-    position: absolute;
-    top: 60%;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.3);
-    border: none;
-    color: #fff;
-    font-size: 24px;
-    cursor: pointer;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
     justify-content: center;
-    z-index: 2;
+    align-items: center;
   }
   
-  .scroll-button.left {
-    left: 4rem;
+  .contacts-section .open-hours {
+    background-color: rgba(59, 38, 38, 0.811);
+    width: 65%;
+    height: 60%;
+    text-align: center;
   }
-  
-  .scroll-button.right {
-    right:4rem;
+  .contacts-section .open-hours h1 {
+    color: rgb(239, 240, 232);
+    font-size: 2.3rem;
+    display: block;
+    margin-top:2rem;
   }
- 
+  .contacts-section .open-hours p {
+    color: rgb(239, 240, 232);
+    line-height: 3rem;
+    font-size: 1.4rem;
+  }
