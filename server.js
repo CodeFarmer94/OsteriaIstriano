@@ -7,7 +7,7 @@ const cookieParser = require("cookie-parser");
 const LocalStrategy = require("passport-local").Strategy;
 const cors = require("cors");
 const bcrypt = require("bcrypt");
-const bodyParser = require("body-parser"); // Add the body-parser middleware
+const bodyParser = require("body-parser"); 
 const csrf = require('csurf')
 const { User } = require("./models/db");
 const router = require('./routes/routes')(passport);
@@ -35,7 +35,7 @@ app.use(passport.session());
 passport.use(
   new LocalStrategy(async (username, password, done) => {
     try {
-      const user = await User.findOne({ where: { username: username } });
+      const user = await User.findOne({ where: { username: username.toLowerCase() } });
       if (!user) {
         return done(new Error('User not Found'), false);
       }

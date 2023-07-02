@@ -6,6 +6,7 @@ import { Tooltip } from 'react-tooltip';
 export default function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  
   const navigate = useNavigate();
 
   const handleSubmitLogin = async (event) => {
@@ -25,7 +26,7 @@ export default function Login() {
         navigate('/menu');
       } else {
         console.error('Login failed');
-        Tooltip.show(document.getElementById('login-tooltip'));
+        
       }
     } catch (error) {
       console.error('An error occurred:', error);
@@ -35,12 +36,12 @@ export default function Login() {
   return (
     <div className="login-container">
       <form onSubmit={handleSubmitLogin} className="login-form">
-        <h2>Login</h2>
+        <h2>Accedi</h2>
         <div className="form-group">
-          <label htmlFor="username">Username</label>
+          <label htmlFor="email">Email</label>
           <input
-            id="username"
-            type="text"
+            id="email"
+            type="email"
             value={username}
             onChange={(event) => setUsername(event.target.value)}
           />

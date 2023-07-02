@@ -2,16 +2,27 @@ import { createSlice, configureStore } from "@reduxjs/toolkit";
 
 const initialState = {
  
-  userData: {},
+  userId: null,
   menu:[],
   cart:[],
-  total:0
+  total:0,
+  order:{total:0, userData:{}, cart: []},
+  isLoggedIn:false
 };
 
 const deliverySlice = createSlice({
     name: 'delivery',
     initialState,
     reducers:{
+        setUserId: (state, action) => {
+          state.userId = action.payload
+        },
+        setIsLoggedIn: (state,action) => {
+            state.isLoggedIn = action.payload
+        },
+        setOrder: (state,action) => {
+          state.order = action.payload
+        },
         setUserData: (state, action) => {
             state.userData = action.payload;
           },
@@ -43,7 +54,12 @@ const deliverySlice = createSlice({
         }          
     }
 })
-
+export const { setUserId} = deliverySlice.actions
+export const selectUserId = (state) => state.delivery.userId
+export const { setOrder } = deliverySlice.actions
+export const selectOrder = (state) => state.delivery.order
+export const { setIsLoggedIn } = deliverySlice.actions
+export const selectIsLoggedIn = (state) => state.delivery.isLoggedIn
 export const { setUserData } = deliverySlice.actions
 export const selectUserData = (state) => state.delivery.userData
 export const { setMenuData } = deliverySlice.actions

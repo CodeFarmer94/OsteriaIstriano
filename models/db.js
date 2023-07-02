@@ -8,46 +8,60 @@ const sequelize = new Sequelize('deliveryDB', 'postgres', 'postgres', {
 const User = sequelize.define('User', {
   username: {
     type: DataTypes.STRING,
+    allowNull: false,
+    unique:true
+  },
+ 
+  password: {
+    type: DataTypes.STRING,
     allowNull: false
   },
   email: {
     type: DataTypes.STRING,
-    allowNull: false,
-    unique: true
-  },
-  password: {
-    type: DataTypes.STRING,
-    allowNull: false
+    allowNull: true
   }
 });
+
 
 const UserDetails = sequelize.define('UserDetails', {
   location: {
     type: DataTypes.STRING,
-    defaultValue: null
+    allowNull:false
   },
-  age: {
+  name: {
     type: DataTypes.STRING,
-    defaultValue: null
+    allowNull:false
   },
-  gender: {
+  surname: {
     type: DataTypes.STRING,
-    defaultValue: null
+    allowNull:false
+  },
+  mobile: {
+    type: DataTypes.STRING,
+    allowNull:false
   }
+
 });
 
 const Order = sequelize.define('Order', {
-  item_id: {
-    type: DataTypes.INTEGER,
-    allowNull: false
+  cart: {
+    type: DataTypes.ARRAY(DataTypes.STRING),
+    allowNull: true
   },
-  quantity: {
-    type: DataTypes.INTEGER,
+  status: {
+    type: DataTypes.STRING,
     allowNull: false
   },
   total: {
     type: DataTypes.FLOAT,
     allowNull: false
+  },
+  time: {
+    type:DataTypes.STRING,
+    allowNull:false,
+  },
+  note:{
+    type: DataTypes.STRING
   }
 });
 
@@ -67,6 +81,10 @@ const Item = sequelize.define('Item', {
 }, {
   timestamps: false // Disable the createdAt and updatedAt columns
 });
+Order.belongsTo(User, {
+  foreignKey:'userId',
+  allowNull:false
+})
 
 UserDetails.belongsTo(User, {
   foreignKey: 'userId',
@@ -77,10 +95,8 @@ User.hasOne(UserDetails, {
   allowNull: false
 });
 
-Order.belongsTo(Item, {
-  foreignKey: 'item_id',
-  allowNull: false
-});
+
+
 
 // Function to insert items
 const insertItems = async () => {
@@ -234,11 +250,12 @@ const insertItems = async () => {
   }
 };
 
-// Drop tables before syncing
+//Drop tables before syncing
 sequelize.sync({ force: true })
   .then(() => {
     console.log('Tables dropped and synchronized successfully.');
-    insertItems();
+    insertItems()
+  
   })
   .catch((error) => {
     console.error('Error dropping tables:', error);

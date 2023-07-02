@@ -3,6 +3,7 @@ import './cart.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCart, selectTotal } from '../../store/store';
 import CartItem from './cartItem/CartItem';
+import { Link } from 'react-router-dom';
 
 export default function Cart() {
   const [isFixed, setIsFixed] = useState(false);
@@ -20,6 +21,10 @@ export default function Cart() {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+  const handleCartSubmit = () => {
+
+
+  }
 
   const cart = useSelector(selectCart);
   const total = useSelector(selectTotal);
@@ -33,14 +38,14 @@ export default function Cart() {
   ));
 
   return (
-    <div className={`cart-container ${isFixed ? 'fixed' : ''}`} ref={cartContainerRef}>
+    <form className={`cart-container ${isFixed ? 'fixed' : ''}`} ref={cartContainerRef} onSubmit={ handleCartSubmit}>
       <h2>Il tuo Ordine</h2>
       {cartList}
       <h3 style={{display: total > 0 ? "" : 'none'}}>
         <div>Subtotale</div>
         <div>€{total.toFixed(2).replace('.', ',')}</div>
       </h3>
-      <button>Vai al Pagamento</button>
-    </div>
+      <Link to='/order'><button>Vai al Pagamento</button></Link>
+    </form>
   );
 }

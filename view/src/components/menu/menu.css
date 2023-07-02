@@ -15,7 +15,7 @@
     border-bottom: 5px solid rgb(168, 170, 162);
     
 }
-.menu-page form {
+.menu-form {
     display: grid;
     grid-template-columns: 3fr 2fr;
     padding: 1rem;

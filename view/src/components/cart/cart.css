@@ -4,9 +4,8 @@
      background-color: white;
      border-radius: 10px;
      align-self: flex-start;
-     
-
   }
+  
   
   .cart-container.fixed {
     position: sticky;

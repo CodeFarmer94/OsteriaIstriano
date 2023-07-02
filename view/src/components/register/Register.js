@@ -1,13 +1,15 @@
 import { useState } from 'react';
 import './register.css';
+import { useNavigate } from 'react-router-dom';
 
 export default function Register() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('');
-  const [age, setAge] = useState('');
+  const [name, setName] = useState('');
   const [location, setLocation] = useState('');
-  const [gender, setGender] = useState('');
+  const [surname, setSurname] = useState('');
+  const [mobile, setMobile] = useState('')
+  const navigate = useNavigate()
 
   const handleSubmitRegister = async (event) => {
     event.preventDefault();
@@ -18,12 +20,13 @@ export default function Register() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ username, email, password, gender, location, age }),
+        body: JSON.stringify({ username: username.toLowerCase(),  password, name, location, surname, mobile }),
       });
       // Handle the response
       if (response.ok) {
         // Successful registration
         console.log('Registered successfully');
+        navigate('/login')
       } else {
         // Error handling for failed registration
         console.error('Registration failed');
@@ -38,10 +41,10 @@ export default function Register() {
       <form onSubmit={handleSubmitRegister} className="register-form">
         <h2>Registrati</h2>
         <div className="form-group">
-          <label htmlFor="username">Username</label>
+          <label htmlFor="username">Email</label>
           <input
             id="username"
-            type="text"
+            type="email"
             value={username}
             onChange={(event) => setUsername(event.target.value)}
           />
@@ -56,16 +59,17 @@ export default function Register() {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="email">Email</label>
+          <label htmlFor="mobile">Numero di Telefono</label>
           <input
-            id="email"
-            type="email"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
+            id="mobile"
+            type="text"
+            value={mobile}
+            onChange={(event) => setMobile(event.target.value)}
           />
         </div>
+       
         <div className="form-group">
-          <label htmlFor="location">Location</label>
+          <label htmlFor="location">Indirizzo di Consegna</label>
           <input
             id="location"
             type="text"
@@ -74,21 +78,21 @@ export default function Register() {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="age">Age</label>
+          <label htmlFor="name">Nome</label>
           <input
-            id="age"
+            id="name"
             type="text"
-            value={age}
-            onChange={(event) => setAge(event.target.value)}
+            value={name}
+            onChange={(event) => setName(event.target.value)}
           />
         </div>
         <div className="form-group">
-          <label htmlFor="gender">Gender</label>
+          <label htmlFor="surname">Cognome</label>
           <input
-            id="gender"
+            id="surname"
             type="text"
-            value={gender}
-            onChange={(event) => setGender(event.target.value)}
+            value={surname}
+            onChange={(event) => setSurname(event.target.value)}
           />
         </div>
         <button type="submit">Register</button>

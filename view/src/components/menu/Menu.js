@@ -3,14 +3,17 @@ import deco from '../../images/decor-gold.png'
 import { useState, useEffect } from 'react'
 import MenuItem from './menu-item/MenuItem'
 import { useDispatch, useSelector } from 'react-redux'
-import { selectMenuData, setMenuData} from '../../store/store'
+import { selectIsLoggedIn, selectMenuData, setIsLoggedIn, setMenuData, setUserId} from '../../store/store'
 import { selectCart } from '../../store/store'
+import { selectUserId } from '../../store/store'
+
 import Cart from '../cart/Cart'
 
 export default function Menu() {
 
 const cart = useSelector(selectCart)
 const menu = useSelector(selectMenuData)
+const isLoggedIn = useSelector(selectIsLoggedIn)
 const dispatch = useDispatch()
 
 useEffect(() => {
@@ -25,8 +28,23 @@ useEffect(() => {
             console.error('Error fetching menu', err)
         }
     }
+    const fetchUserDetails = async () => {
+        try {
+          const response = await fetch('http://localhost:8030/api/profile', { method: 'GET', credentials:'include'});
+          const data = await response.json();
+          if (data) {
+            dispatch(setIsLoggedIn(true))
+            dispatch(setUserId(data.id))
+          }
+        } catch (error) {
+          console.error('Error fetching user details:', error);
+        }
+      };
+  
+    fetchUserDetails();
     fetchMenu()
 }, [dispatch])
+
 
 const antipasti = menu.map(item=> item.category === 'Antipasti' && <MenuItem name={item.name} price={item.price}/>)
 const primi = menu.map(item=> item.category === 'Primi piatti' && <MenuItem name={item.name} price={item.price}/>)
@@ -36,7 +54,7 @@ const viniDolci = menu.map(item=> item.category === 'Dolci e Vini' && <MenuItem 
 
     return(
         <div className='menu-page'>
-            <form>
+            <form className='menu-form'>
                 <section className='food-section'>
                     <div className='food-category'>
                         <h1>

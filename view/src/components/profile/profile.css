@@ -1,0 +1,122 @@
+.profile-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin-top: 2rem;
+
+}
+.profile-order-container{
+  max-height: 50vh;
+  overflow: scroll;
+  display:flex;
+  flex-direction: column;
+  gap: 2rem;
+
+}
+.profile-order{
+  border-bottom: 1px solid gray;
+}
+.profile-order-container li {
+  list-style: none;
+
+}
+.profile-order-container li .item-details{
+  border-bottom: 1px dashed gray;
+  display: fleX;
+  align-items: center;
+  gap: 1rem;
+  justify-content: space-between;
+  margin: 0.5rem 1.5rem;
+}
+
+.order-total{
+  text-align: right;
+  margin: 0.5rem 1.5rem;
+  font-weight: bold
+}
+.order-date{
+  margin: 0.5rem 1.5rem;
+  border-bottom: 1px dotted gray;
+
+}
+.options-container {
+  background-color: rgb(147, 128, 17);
+  width: 100%;
+  display:flex;
+  justify-content: center;
+  padding: 0.8rem 0;
+  margin-bottom: 2rem;
+  
+}
+.options-container button[type='options']{
+  border: none;
+  color:white;
+  cursor: pointer;
+  margin: 0 1.5rem;
+  background-color: inherit;
+  border-radius: 10px;
+  font-size: 1.3rem;
+  padding: 0.2rem 0.5rem;
+}
+
+.profile-form {
+  background-color: #ffffff;
+  width: 450px;
+  box-shadow: 0 6px 6px rgba(0, 0, 0, 0.408);
+  border: 1.5px solid rgb(159, 158, 158);
+ 
+}
+
+.profile-form-group {
+  margin: 1rem 2rem;
+  box-sizing: border-box;
+}
+
+
+
+label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+
+}
+
+.profile-form button[type="submit"] {
+  
+  width:100%;
+  background-color: #4caf4fde;
+  color: white;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 17px;
+}
+.profile-form button[type="logout"] {
+  
+  width:100%;
+  background-color: #cf4339dc;
+  color: white;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 17px;
+
+}
+
+button[type="submit"]:hover {
+  background-color: #45a049;
+
+}
+
