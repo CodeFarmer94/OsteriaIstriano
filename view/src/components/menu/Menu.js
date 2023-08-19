@@ -42,14 +42,15 @@ useEffect(() => {
       };
   
     fetchUserDetails();
+ 
     fetchMenu()
 }, [dispatch])
 
 
-const antipasti = menu.map(item=> item.category === 'Antipasti' && <MenuItem name={item.name} price={item.price}/>)
-const primi = menu.map(item=> item.category === 'Primi piatti' && <MenuItem name={item.name} price={item.price}/>)
-const secondi = menu.map(item=> item.category === 'Secondi piatti' && <MenuItem name={item.name} price={item.price}/>)
-const viniDolci = menu.map(item=> item.category === 'Dolci e Vini' && <MenuItem name={item.name} price={item.price}/>)
+const antipasti = menu.map((item,index)=> item.category === 'Antipasti' && <MenuItem name={item.name} key = {index} price={item.price}/>)
+const primi = menu.map((item,index)=> item.category === 'Primi piatti' && <MenuItem name={item.name} key = {index} price={item.price}/>)
+const secondi = menu.map((item,index)=> item.category === 'Secondi piatti' && <MenuItem name={item.name} key = {index} price={item.price}/>)
+const viniDolci = menu.map((item,index)=> item.category === 'Dolci e Vini' && <MenuItem name={item.name} key = {index} price={item.price}/>)
 
 
     return(

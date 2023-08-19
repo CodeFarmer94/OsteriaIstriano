@@ -1,4 +1,4 @@
-import { selectCart, selectIsLoggedIn, selectOrder, selectUserData } from '../../store/store'
+import { selectCart, selectIsLoggedIn, selectOrder } from '../../store/store'
 import './order.css'
 import { useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { setOrder } from '../../store/store'
 import { selectTotal, selectUserId } from '../../store/store'
+import getTime from '../../helpers/getTime'
 export default function Order () {
 
     const [name, setName] = useState('');
@@ -23,6 +24,7 @@ export default function Order () {
     const cartList = cart.map(item => item )
     const userId = useSelector(selectUserId)
     useEffect(()=> {
+      
       if(!isLoggedIn){
         navigate('/login')
       }
@@ -49,7 +51,7 @@ export default function Order () {
     const handleConfirmSubmit =  async (event) => {
       event.preventDefault();
       dispatch(setOrder({ total, userData: { name, surname, location, mobile, time, note}, status:'Pending', cart }))
-      console.log(total)
+      
       try {
           const response = await fetch('http://localhost:8030/api/order',
           { method: 'POST', 
@@ -121,16 +123,16 @@ export default function Order () {
             onChange={(event) => setMobile(event.target.value)}
           />
         </div>
-  
-        <h2>Conferma l'orario della Consegna</h2>
         <div className="form-group">
           <label htmlFor="orario">Orario di consegna</label>
-          <input
+          <select
             id="orario"
-            type="text"
+            type=""
             value={time}
             onChange={(event) => setTime(event.target.value)}
-          />
+          >
+            {getTime().map( (d, index) => <option  selected={index === 0} key={index} value={d}>{d}</option>)}
+          </select>
         </div>
         <div className="form-group">
           <label htmlFor="note">Lascia una nota per il ristorante</label>

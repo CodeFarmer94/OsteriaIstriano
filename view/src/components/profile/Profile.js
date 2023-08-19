@@ -31,7 +31,9 @@ export default function Profile() {
           setMobile(data.mobile);
           dispatch(setIsLoggedIn(true));
         }
+      
       } catch (error) {
+        navigate('/')
         console.error("Error fetching user details:", error);
       }
     };

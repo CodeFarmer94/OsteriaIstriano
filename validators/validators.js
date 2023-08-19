@@ -4,6 +4,7 @@ exports.validateUsername = () =>
   body('username')
     .notEmpty()
     .withMessage('Username is required')
+    .isEmail()
     .isLength({ min: 4 })
     .withMessage('Username must be at least 4 characters');
 
@@ -11,7 +12,7 @@ exports.validatePassword = () =>
   body('password')
     .notEmpty()
     .withMessage('Password is required')
-    .isLength({ min: 6 })
+    .isLength({ min: 8 })
     .withMessage('Password must be at least 6 characters');
 
 exports.validateName = () =>
@@ -33,7 +34,15 @@ exports.validateStatus = () =>
   body('status').notEmpty().withMessage('Status is required');
 
 exports.validateTotal = () =>
-  body('total').notEmpty().withMessage('Total is required');
+body('total')
+  .notEmpty().withMessage('Total is required')
+  .custom(value => {
+    if (parseFloat(value) <= 0) {
+      throw new Error('Total must be greater than 0');
+    }
+    return true;
+  })
+
 
 exports.validateUserId = () =>
   body('userId').notEmpty().withMessage('User ID is required');

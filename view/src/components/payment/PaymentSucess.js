@@ -26,7 +26,21 @@ export default function PaymentSuccess() {
         console.error(error);
       }
     };
+    const updateOrderStatus = async() => {
+      try{
+        const response = await fetch('http://localhost:8030/api/order', {
+          method: 'PUT',
+          credentials: 'include'
+        })
+        const data = await response.json()
 
+      } catch(err) {
+
+
+      }
+
+    }
+    updateOrderStatus()
     fetchOrder();
   }, []);
 

@@ -21,10 +21,7 @@ export default function Cart() {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-  const handleCartSubmit = () => {
-
-
-  }
+  
 
   const cart = useSelector(selectCart);
   const total = useSelector(selectTotal);
@@ -38,14 +35,14 @@ export default function Cart() {
   ));
 
   return (
-    <form className={`cart-container ${isFixed ? 'fixed' : ''}`} ref={cartContainerRef} onSubmit={ handleCartSubmit}>
+    <form className={`cart-container ${isFixed ? 'fixed' : ''}`} ref={cartContainerRef} >
       <h2>Il tuo Ordine</h2>
       {cartList}
       <h3 style={{display: total > 0 ? "" : 'none'}}>
         <div>Subtotale</div>
         <div>€{total.toFixed(2).replace('.', ',')}</div>
       </h3>
-      <Link to='/order'><button>Vai al Pagamento</button></Link>
+     { total > 0 ? <Link to='/order'><button>Vai al Pagamento</button></Link> : null}
     </form>
   );
 }

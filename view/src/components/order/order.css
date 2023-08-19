@@ -39,6 +39,13 @@
     height: 5rem;
     padding:0.5rem;
   }
+  .form-group select{
+    background-color: rgb(255, 255, 255);
+    width: 10rem;
+    padding: 0.5rem;
+    font-weight: bold;
+    letter-spacing: 0.1rem;
+  }
   button[type="submit"] {
     width: 100%;
     margin: 0 auto;

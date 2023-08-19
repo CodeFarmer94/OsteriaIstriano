@@ -1,3 +1,4 @@
+const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcrypt')
 const stripe = require('stripe')('sk_test_9W1R4v0cz6AtC9PVwHFzywti')
 
@@ -15,6 +16,11 @@ exports.isAuthenticated = (req, res, next) => {
 
 
 exports.login =  (req, res) => {
+    const result = validationResult(req)
+    if (!result.isEmpty()) {
+      return res.status(400).json({ errors: result.array() })
+    }
+    
     res.set("Access-Control-Allow-Origin", "http://localhost:3000");
     res.set("Access-Control-Allow-Credentials", "true");
     res.status(200).json({ message: "You logged in" });
@@ -22,10 +28,15 @@ exports.login =  (req, res) => {
 
 exports.register = async (req, res) => {
     const { username, password, name, location, surname, mobile } = req.body;
+    const result = validationResult(req)
+    if (!result.isEmpty()) {
+      return res.status(400).json({ errors: result.array() })
+    }
+
     try {
       const existingUser = await User.findOne({ where: { username: username } });
       if (existingUser) {
-        return res.status(409).json({ error: "User already exists" });
+        return res.status(409).json({ error: "L'email è già registrata" });
       }
       const salt = await bcrypt.genSalt(saltRounds);
       const hashedPassword = await bcrypt.hash(password, salt);
@@ -41,10 +52,10 @@ exports.register = async (req, res) => {
         surname,
         mobile
       });
-      res.status(201).json({ message: "User registered successfully" });
+      return  res.status(201).json({ message: "User registered successfully" });
     } catch (error) {
       console.error(error);
-      res.status(500).json({ error: "An error occurred" });
+      return res.status(500).json({ error: "An error occurred" });
     }
   }
 
@@ -64,7 +75,6 @@ exports.register = async (req, res) => {
         return res.status(404).json({ error: "User details not found" });
       }
       userDetails.username = username;
-     
       res.status(200).json(userDetails);
     } catch (error) {
       console.error(error);
@@ -74,6 +84,10 @@ exports.register = async (req, res) => {
   exports.modifyProfile = async (req, res) => {
     const { username } = req.user;
     const { location, name, surname, mobile } = req.body;
+    const result = validationResult(req)
+    if (!result.isEmpty()) {
+      return res.status(400).json({ errors: result.array() })
+    }
     try {
       const user = await User.findOne({
         where: { username },
@@ -106,6 +120,10 @@ exports.register = async (req, res) => {
   
   exports.createOrder = async(req,res) => {
     const { cart, status , total, userId, time , note} = req.body
+    const result = validationResult(req)
+    if (!result.isEmpty()) {
+      return res.status(400).json({ errors: result.array() })
+    }
     try {
      const order = await Order.create({ cart, status, total, userId, time, note})
      res.status(201).json({ message: "Order registered successfully" });
@@ -153,11 +171,30 @@ exports.register = async (req, res) => {
     }
  }
 
+ exports.updateOrderStatus = async (req, res) => {
+  const order = await Order.findOne({
+    where: { userId: req.user.id },
+    order: [['createdAt', 'DESC']],
+  });
+  console.log(order);
+  if (order) {
+    await Order.update(
+      { status: 'Confirmed' },
+      { where: { id: order.id } } // Provide the where condition to update the specific order
+    );
+    res.status(200).json({ message: 'Order status updated successfully' });
+  } else {
+    res.status(404).json({ message: 'Order not found' });
+  }
+};
 
 
  exports.createPayment = async (req, res) => {
   const { total, title } = req.body
-  console.log(total)
+  const result = validationResult(req)
+  if (!result.isEmpty()) {
+    return res.status(400).json({ errors: result.array() })
+  }
   const session = await stripe.checkout.sessions.create({
     line_items: [
       {

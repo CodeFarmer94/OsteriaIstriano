@@ -20,8 +20,10 @@ export default function MenuItem({ name, price }) {
   const handleRemoveItem = () => {
     if (quantity > 0) {
       const updatedQuantity = quantity - 1;
+      const updatedTotal = total - parseInt(price)  
       setQuantity(updatedQuantity);
       dispatch(removeFromCart({ name, price, quantity: updatedQuantity }));
+      dispatch(setTotal(updatedTotal))
     }
   };
   

@@ -8,6 +8,8 @@ nav {
     display:flex;
     justify-content: space-around;
     align-items: center;
+    position: fixed;
+    top:0
     
 }
 nav ul {
@@ -16,6 +18,11 @@ nav ul {
     display: flex;
     gap:2rem;
     font-size: 1.5rem;
+}
+
+nav li span {
+    vertical-align: middle;
+    margin-left: 0.5rem;
 }
 nav a{
     text-decoration: none;

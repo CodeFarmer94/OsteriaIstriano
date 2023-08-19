@@ -6,7 +6,7 @@ import { Tooltip } from 'react-tooltip';
 export default function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  
+  const [error, setError] = useState('')
   const navigate = useNavigate();
 
   const handleSubmitLogin = async (event) => {
@@ -25,7 +25,7 @@ export default function Login() {
         console.log('Logged in successfully');
         navigate('/menu');
       } else {
-        console.error('Login failed');
+        setError('Username o password errati')
         
       }
     } catch (error) {
@@ -38,7 +38,7 @@ export default function Login() {
       <form onSubmit={handleSubmitLogin} className="login-form">
         <h2>Accedi</h2>
         <div className="form-group">
-          <label htmlFor="email">Email</label>
+          <label htmlFor="email">Email<span>{error && error}</span></label>
           <input
             id="email"
             type="email"

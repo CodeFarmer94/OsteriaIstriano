@@ -30,26 +30,37 @@ app.use(
 );
 
 app.use(helmet())
+app.use((err, req, res, next) => {
+  if (err.code === 'EBADCSRFTOKEN') {
+    res.status(403);
+    res.send("The form was tampered with!");
+  } else {
+    next(err);
+  }
+});
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(
   new LocalStrategy(async (username, password, done) => {
     try {
       const user = await User.findOne({ where: { username: username.toLowerCase() } });
+      console.log(user)
       if (!user) {
-        return done(new Error('User not Found'), false);
+        return done({ message: 'User not found' }, false);
       }
       const isPasswordValid = await bcrypt.compare(password, user.password);
       if (!isPasswordValid) {
-        return done(new Error('Password is wrong!'), false);
+        return done({ message: 'Incorrect password' }, false);
       }
-      console.log("login-sucess");
+      console.log('login-success');
       return done(null, user);
     } catch (error) {
+      console.log(error)
       return done(error);
     }
   })
 );
+
 
 // Serialize and deserialize user objects
 passport.serializeUser((user, done) => {
@@ -66,14 +77,7 @@ passport.deserializeUser(async (id, done) => {
 });
 
 app.use('/api', router)
-app.use((err, req, res, next) => {
-  if (err.code === 'EBADCSRFTOKEN') {
-   res.status(403)
-   res.send("The form was tampered with!")
-  } else {
-    next();
-  }
-})
+
 app.listen(PORT, () => {
     console.log(`App is listening on port ${PORT}`);
   });
