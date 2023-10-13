@@ -29,6 +29,9 @@ const deliverySlice = createSlice({
         setMenuData: (state, action) => {
             state.menu = action.payload
         },
+        setCart: (state, action) => {
+          state.cart = action.payload
+        },
         addToCart: (state, action) => {
             const itemToAdd = action.payload;
             const existingItem = state.cart.find(item => item.name === itemToAdd.name);
@@ -64,6 +67,7 @@ export const { setUserData } = deliverySlice.actions
 export const selectUserData = (state) => state.delivery.userData
 export const { setMenuData } = deliverySlice.actions
 export const selectMenuData = (state) => state.delivery.menu
+export const { setCart } = deliverySlice.actions
 export const { addToCart } = deliverySlice.actions
 export const { removeFromCart} = deliverySlice.actions
 export const selectCart = (state) => state.delivery.cart

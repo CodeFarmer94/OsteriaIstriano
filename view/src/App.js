@@ -9,20 +9,25 @@ import { Route, Routes} from 'react-router-dom';
 import Login from './components/login/Login';
 import Register from './components/register/Register';
 import Order from './components/order/Order';
-
+import Cart
+ from './components/cart/Cart';
 function App() {
   return (
     <div className="App">
       <Navbar/>
-      <Routes>
+      <div className='main-view'>
+        <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/profile" element={<Profile/>} />
         <Route path="/login" element={<Login/>}/>
         <Route path='/menu' element={<Menu/>} />
+        <Route path='/cart' element={<Cart/>}/>
         <Route path='/register' element={<Register/>} />
         <Route path='/order' element={<Order/>} />
         <Route path="/payment" element={<PaymentSucess />} />
       </Routes>
+      </div>
+      <footer id='footer'></footer>
     
     </div>
   );

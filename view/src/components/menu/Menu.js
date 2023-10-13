@@ -3,18 +3,26 @@ import deco from '../../images/decor-gold.png'
 import { useState, useEffect } from 'react'
 import MenuItem from './menu-item/MenuItem'
 import { useDispatch, useSelector } from 'react-redux'
-import { selectIsLoggedIn, selectMenuData, setIsLoggedIn, setMenuData, setUserId} from '../../store/store'
-import { selectCart } from '../../store/store'
-import { selectUserId } from '../../store/store'
+import { selectIsLoggedIn, selectMenuData, selectTotal, setIsLoggedIn, setMenuData, setUserId} from '../../store/store'
+import { selectCart, setCart, setTotal } from '../../store/store'
+
 
 import Cart from '../cart/Cart'
+import CartButton from '../cart/cartButton/CartButton'
 
 export default function Menu() {
 
-const cart = useSelector(selectCart)
 const menu = useSelector(selectMenuData)
-const isLoggedIn = useSelector(selectIsLoggedIn)
 const dispatch = useDispatch()
+const cart = useSelector(selectCart)
+const total = useSelector(selectTotal)
+
+useEffect(() => {
+    sessionStorage.setItem('cart', JSON.stringify(cart));
+    sessionStorage.setItem('total', JSON.stringify(total))
+}, [cart]);
+
+
 
 useEffect(() => {
     const fetchMenu = async () => {
@@ -86,8 +94,13 @@ const viniDolci = menu.map((item,index)=> item.category === 'Dolci e Vini' && <M
                             {viniDolci}
                     </div>
                 </section>
-                
-                    <Cart/>
+                    <div className='menu-cart-container'>
+                        <Cart/>
+                    </div>
+                    <div>
+                        {total > 0 ? <CartButton/> : ''}
+                    </div>
+                    
               
             </form>
         </div>

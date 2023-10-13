@@ -1,8 +1,8 @@
 import "./profile.css";
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { selectIsLoggedIn, setIsLoggedIn } from "../../store/store";
+import { setIsLoggedIn } from "../../store/store";
 export default function Profile() {
   const [username, setUsername] = useState();
   const [userOrders, setUserOrders] = useState([])
@@ -11,7 +11,6 @@ export default function Profile() {
   const [surname, setSurname] = useState("");
   const [mobile, setMobile] = useState("");
   const [option, setOption] = useState("user-data");
-  const isLoggedIn = useSelector(selectIsLoggedIn);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -53,7 +52,7 @@ export default function Profile() {
     }
     fetchUserOrders();
     fetchUserDetails();
-  }, []);
+  }, [dispatch, navigate]);
 
   const handleSubmitProfile = async (event) => {
     event.preventDefault();

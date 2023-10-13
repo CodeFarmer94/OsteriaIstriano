@@ -1,16 +1,12 @@
 nav {
-    position:absolute;
-    top:0;
+    
     width:100%;
-    background-color: rgba(72, 44, 44, 0.955);
-    height:100px;
+    background-color: rgba(192, 152, 61, 0.695);
     z-index: 1;
-    display:flex;
     justify-content: space-around;
     align-items: center;
     position: fixed;
     top:0
-    
 }
 nav ul {
     list-style: none;
@@ -31,4 +27,35 @@ nav a{
 
 #logo{
  margin: 0 5rem;
+}
+/* Media query for screens up to a certain width (e.g., mobile devices) */
+@media (max-width: 768px) {
+    nav {
+        font-size: 1.5rem; /* Adjust the font size as needed */
+        
+    }
+    nav ul{
+        gap:1rem;
+        font-size: 1.1rem;
+        padding: 0 1rem 0.7rem 1rem
+        
+    }
+    #logo{
+        margin:auto;
+        padding: 1rem 0;
+        width:150px;
+        display:block;
+    }
+    nav li span{
+        font-size:1rem;
+    }
+    
+
+}
+
+@media (min-width:768px){
+    nav{
+        display:flex;
+        height:100px;
+    }
 }

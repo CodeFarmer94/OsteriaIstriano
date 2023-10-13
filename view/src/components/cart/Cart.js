@@ -4,12 +4,25 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectCart, selectTotal } from '../../store/store';
 import CartItem from './cartItem/CartItem';
 import { Link } from 'react-router-dom';
+import { setCart, setTotal } from '../../store/store';
 
 export default function Cart() {
   const [isFixed, setIsFixed] = useState(false);
   const cartContainerRef = useRef(null);
-
+  const cart = useSelector(selectCart);
+  const total = useSelector(selectTotal);
+  const dispatch = useDispatch()
   useEffect(() => {
+    // Load cart from session storage if available and update Redux store
+    const storedCart = JSON.parse(sessionStorage.getItem('cart'));
+    if (storedCart && Array.isArray(storedCart)) {
+      dispatch(setCart(storedCart));
+    }
+    const storedTotal = JSON.parse(sessionStorage.getItem('total'))
+    if(storedTotal) {
+      dispatch(setTotal(storedTotal))
+    }
+
     const cartContainerTop = cartContainerRef.current.offsetTop;
     const handleScroll = () => {
       const scrollPosition = window.pageYOffset;
@@ -20,11 +33,8 @@ export default function Cart() {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
-  
+  }, [dispatch]);
 
-  const cart = useSelector(selectCart);
-  const total = useSelector(selectTotal);
   const cartList = cart.map((item) => (
     <CartItem
       name={item.name}
@@ -33,6 +43,7 @@ export default function Cart() {
       key={item.name}
     />
   ));
+
 
   return (
     <form className={`cart-container ${isFixed ? 'fixed' : ''}`} ref={cartContainerRef} >

@@ -10,23 +10,15 @@ import verticalImg6 from '../../images/home-vertical-image6.jpeg'
 import deco from '../../images/decor-gold.png'
 import { Link } from 'react-router-dom';
 import MapContainer from '../map/Map';
-import {location} from '../../helpers/location'
+
+
 export default function Home () {
 
-    const galleryRef = useRef(null);
-
-  const scrollLeft = () => {
-    galleryRef.current.scrollBy({ left: -1000, behavior: 'smooth' });
-  };
-
-  const scrollRight = () => {
-    galleryRef.current.scrollBy({ left: 1000, behavior: 'smooth' });
-  };
 
   return (
     <div className='home-main'>
       <section className='top-section'>
-        <h1>L'Osteria Istriano: Ristorantino di pesce sulle rive di Trieste!</h1>
+        <h1>L' <i>Osteria Istriano</i>:  ristorante di pesce sulle rive di Trieste!</h1>
         <img src={istriano_bg} alt='dining-room' id='home-bg'/>
       </section>
       <section className='delivery-section'>
@@ -42,7 +34,7 @@ export default function Home () {
             <img src={antipasto1} alt='' id='vertical-img3'/>
           </div>
         </div>
-        <div className='flex-row'>
+        <div className='flex-row second'>
           <div className='home-vertical-img-container'>
             <img src={verticalImg6} alt='' id='vertical-img4'/>
             <img src={verticalImg5} alt='' id='vertical-img5'/>
@@ -66,7 +58,7 @@ export default function Home () {
             <MapContainer/>
           </div>
         </div>
-        <section className='contacts-section'>
+        <section className='contacts-section' id='contacts'>
           <div className='open-hours'>
             <h1>Orario di Apertura</h1>
             <img src={deco} alt=''/>
@@ -76,10 +68,12 @@ export default function Home () {
               12:30 – 14:00 / 19:30 – 22:00<br/>
               Domenica aperto solo a pranzo.<br/>
               Lunedì siamo chiusi. 
+              Telefono: <strong>040306664</strong>
             </p>
           </div>
         </section>
       </section>
+     
     </div>
   )
   

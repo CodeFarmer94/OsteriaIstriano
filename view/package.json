@@ -1,5 +1,12 @@
 {
   "name": "delivery-app",
+  "babel": {
+    "presets": [
+      "@babel/preset-env",
+      "@babel/preset-react",
+      "@babel/preset-modules"
+    ]
+  },
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -16,6 +23,7 @@
     "react-redux": "^8.1.0",
     "react-router-dom": "^6.13.0",
     "react-scripts": "5.0.1",
+    "react-scroll": "^1.8.9",
     "react-tooltip": "^5.14.0",
     "redux": "^4.2.1",
     "web-vitals": "^2.1.4"
@@ -43,5 +51,35 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.22.10",
+    "@babel/preset-modules": "^0.1.6",
+    "@babel/preset-react": "^7.22.5",
+    "babel-jest": "^29.6.2",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^27.5.1",
+    "jest-styled-components": "^7.1.1",
+    "supertest": "^6.3.3"
+  },
+  "jest": {
+    "transformIgnorePatterns": [
+      "/node_modules/",
+      "\\.(css|sass|scss)$"
+    ],
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest"
+    },
+    "moduleFileExtensions": [
+      "js",
+      "jsx"
+    ],
+    "setupFilesAfterEnv": [
+      "<rootDir>/src/setupTests.js"
+    ],
+    "testEnvironment": "jsdom",
+    "moduleNameMapper": {
+      "\\.(css|jpg|jpeg|png|gif|svg)$": "identity-obj-proxy"
+    }
   }
 }

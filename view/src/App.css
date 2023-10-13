@@ -9,4 +9,8 @@ body{
 }
 a{
   text-decoration: none;
+  
+}
+.main-view{
+  margin-top:100px
 }

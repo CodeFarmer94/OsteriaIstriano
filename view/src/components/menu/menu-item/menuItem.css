@@ -2,13 +2,12 @@
     color: rgb(26, 33, 14);
     font-weight: 100;
     border: 1px solid rgb(172, 172, 172);
-    padding: 1rem;
-    width: 90%;
+   
     margin: auto;
     display: flex;
     justify-content: space-between;
     background-color: rgba(255, 255, 255, 0.797);
-    box-shadow: 2px 2px 4px rgb(160, 160, 160);
+    
 }
 .menu-item h2 {
     font-weight: 200;
@@ -45,4 +44,20 @@
     color: gray;
     padding-top: 5px;
     margin: 0 7px;
+}
+@media (max-width:768px){
+    .menu-item h2{
+        font-size: 1.2rem;
+    }
+    .menu-item{
+        flex-direction: column;
+        padding:0.5rem
+    }
+}
+@media (min-width:768px){
+    .menu-item{
+        padding: 1rem;
+        width: 90%;
+        box-shadow: 2px 2px 4px rgb(160, 160, 160);
+    }
 }

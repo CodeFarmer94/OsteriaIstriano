@@ -37,4 +37,12 @@
     justify-self:end;
    
   }
-  
+  @media (max-width:768px){
+    .cart-item{
+      flex-direction: column;
+      font-size: 1rem;
+    }
+    .cart-item span{
+      font-size: 1rem;
+    }
+  }

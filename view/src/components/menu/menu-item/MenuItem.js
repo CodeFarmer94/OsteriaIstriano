@@ -1,14 +1,24 @@
 import './menuItem.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AiFillMinusCircle, AiFillPlusCircle } from 'react-icons/ai';
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCart,removeFromCart,selectTotal,setTotal } from '../../../store/store';
+import { addToCart,removeFromCart,selectCart,selectTotal,setTotal } from '../../../store/store';
 
 export default function MenuItem({ name, price }) {
   const [quantity, setQuantity] = useState(0);
   const dispatch = useDispatch();
   const total = useSelector(selectTotal)
+  const cart = useSelector(selectCart)
 
+  useEffect(()=>{
+    
+    const found = cart.find(item=> item.name === name)
+  
+    if(found){
+      console.log(found)
+      setQuantity(found.quantity)
+    }
+  },[])
   const handleAddItem = () => {
     const updatedQuantity = quantity + 1;
     const updatedTotal = parseInt(price) +  total 

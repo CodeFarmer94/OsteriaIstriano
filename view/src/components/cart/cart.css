@@ -2,17 +2,11 @@
 .cart-container {
     position: relative;
      background-color: white;
-     border-radius: 10px;
-     align-self: flex-start;
-    
   }
   
-  
   .cart-container.fixed {
-    position: sticky;
-    top: 5rem;
+   
     background-color: white;
-    
   }
 .cart-container h2{
     padding: 2rem 0 1rem 0;
@@ -51,4 +45,23 @@
     justify-content: space-between;
 
 
+}
+@media (max-width:768px){
+    .cart-container{
+      min-height: 100vh;
+    }
+}
+@media (min-width:768px){
+    .cart-container {
+        position: relative;
+         background-color: white;
+         border-radius: 10px;
+         align-self: flex-start;
+        
+      }
+      .cart-container.fixed {
+        position: sticky;
+        top: 0;
+        background-color: white;
+      }
 }

@@ -28,7 +28,7 @@ export default function Order () {
       if(!isLoggedIn){
         navigate('/login')
       }
-    },[])
+    },[isLoggedIn, navigate])
     
     useEffect(() => {
       const fetchUserDetails = async () => {

@@ -4,10 +4,11 @@ import './paymentSucess.css';
 export default function PaymentSuccess() {
   const [cart, setCart] = useState([]);
   const [total, setTotal] = useState(0);
-  const [status, setStatus] = useState('');
   const [time, setTime] = useState('');
   const [note, setNote] = useState('');
-
+  const [status, setStatus] = useState('')
+  
+  
   useEffect(() => {
     const fetchOrder = async () => {
       try {
@@ -32,11 +33,17 @@ export default function PaymentSuccess() {
           method: 'PUT',
           credentials: 'include'
         })
-        const data = await response.json()
-
-      } catch(err) {
-
-
+        if(response.ok){
+          console.log('PUT request successful!');
+          console.log('Response:', data);
+        } else {
+          console.log('PUT request failed!');
+          console.log('Status Code:', response.status);
+          const errorData = await response.json();
+          console.log('Error:', errorData);
+        }
+      } catch (err) {
+        console.error('Error:', err);
       }
 
     }

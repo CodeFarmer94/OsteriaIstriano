@@ -1,0 +1,36 @@
+
+
+.cart-btn-container {
+    width: 100%;
+    background-color: white;
+    height: 4rem;
+    display: flex;
+    justify-content: center; /* Horizontally center items */
+    align-items: center; /* Vertically center items */
+    position: fixed;
+    bottom: 0;
+}
+
+.cart-btn-container button {
+    background-color: rgba(57, 19, 19, 0.784);
+    color: white;
+    padding: 0.2rem 0;
+    font-size: 1.5rem;
+    border-radius: 10px;
+    width: 90vw;
+    display: flex;
+    justify-content: space-around;
+    align-items: baseline
+}
+
+.cart-btn-container #cart-icon{
+    
+}
+.cart-btn-container span{
+    font-size: 1.3rem;
+}
+@media (min-width:768px){
+    .cart-btn-container{
+        display: none;
+    }
+}
