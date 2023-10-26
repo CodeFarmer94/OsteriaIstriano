@@ -33,6 +33,7 @@ export default function PaymentSuccess() {
           method: 'PUT',
           credentials: 'include'
         })
+        const data = await response.json();
         if(response.ok){
           console.log('PUT request successful!');
           console.log('Response:', data);
